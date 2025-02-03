@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('mobils', function (Blueprint $table) {
             $table->id();
-            $table ->foreignIdFor(User::class);
+            $table ->foreignIdFor(App\Models\User::class);
             $table ->string('nopolisi')->nullable();
             $table ->string('merk')->nullable();
             $table ->enum('jenis',['pickup','truck','minibus'])->nullable();

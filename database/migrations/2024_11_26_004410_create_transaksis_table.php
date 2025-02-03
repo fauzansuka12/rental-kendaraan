@@ -20,10 +20,10 @@ return new class extends Migration
             $table ->string('nama') ->nullable();
             $table ->string('ponsel') ->nullable();
             $table ->string('alamat') ->nullable();
-            $table ->string('lama') ->nullable();
+            $table ->integer('lama') ->nullable();
             $table->date('tgl_pesan') ->nullable();
             $table ->string('total')->nullable();
-            $table ->enum('status',['WAIT','PROSES','SELESAI']) ->nullable();
+            $table ->enum('status',['WAIT','PROSES','SELESAI','REJECTED'])->nullable();
             $table->timestamps();
             $table ->softDeletes('deleted_at');
         });

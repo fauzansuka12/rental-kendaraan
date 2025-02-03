@@ -15,7 +15,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Role</th>
+                        {{-- <th scope="col">Role</th> --}}
                     </tr>
                     Proses
                 </thead>
@@ -25,7 +25,7 @@
                         <th scope="row">{{$loop->iteration}}</th>
                         <td>{{$data->name}}</td>
                         <td>{{$data->email}}</td>
-                        <td>{{$data->role}}</td>
+                        {{-- <td>{{Auth::user()->roles}}</td> --}}
                     <td>
                             <button wire:click="edit({{ $data->id }})" class="btn btn-success">Edit</button>
                         <button class="btn btn-danger"wire:click="destroy({{$data->id}})">Delete</button>
