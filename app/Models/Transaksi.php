@@ -15,7 +15,7 @@ class Transaksi extends Model
 
     protected $table='transaksis';
     protected $primaryKey='id';
-    protected $fillable=['id','user_id','mobil_id','nama','ponsel','alamat','lama','tgl_pesan','total','status',
+    protected $fillable=['id','user_id','mobil_id','nama','alamat','lama','tgl_pesan','total','status',
 ];
 public function user():BelongsTo
 {

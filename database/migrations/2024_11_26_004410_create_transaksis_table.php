@@ -18,12 +18,11 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table ->foreignIdFor(Mobil::class);
             $table ->string('nama') ->nullable();
-            $table ->string('ponsel') ->nullable();
             $table ->string('alamat') ->nullable();
             $table ->integer('lama') ->nullable();
             $table->date('tgl_pesan') ->nullable();
             $table ->string('total')->nullable();
-            $table ->enum('status',['WAIT','PROSES','SELESAI','REJECTED'])->nullable();
+            $table ->enum('status',['PROSES','SELESAI','TOLAK'])->nullable();
             $table->timestamps();
             $table ->softDeletes('deleted_at');
         });

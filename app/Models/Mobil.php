@@ -15,7 +15,19 @@ class Mobil extends Model
 
     protected $table='mobils';
     protected $primaryKey='id';
-    protected $fillable=['id','user_id','nopolisi','slug','merk','jenis','kapasitas','harga','foto'];
+    protected $fillable=[
+        'id',
+        'user_id',
+        'nopolisi',
+        'slug',
+        'merk',
+        'jenis',
+        'kursi',
+        'harga',
+        'foto',
+        'mesin',
+        'bbm'
+    ];
     // Model Mobil.php
     public function getRouteKeyName()
     {

@@ -81,6 +81,13 @@
                                 <input type="" class="form-control" name="email" id="floatingInput" placeholder="name@example.com" value="{{@old('email')}}">
                                 <label for="floatingInput">Email address</label>
                             </div>
+                            @error('telephone')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                            <div class="form-floating mb-3">
+                                <input type="" class="form-control" name="telephone" id="floatingInput" placeholder="+628xxxxxxx" value="{{@old('telephone')}}">
+                                <label for="floatingInput">telephone</label>
+                            </div>
                             @error('password')
                             <span class="text-danger">{{$message}}</span>
                         @enderror

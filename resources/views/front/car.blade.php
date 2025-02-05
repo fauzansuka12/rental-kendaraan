@@ -10,7 +10,7 @@
 					<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
 									class="ion-ios-arrow-forward"></i></a></span> <span>Cars <i
 								class="ion-ios-arrow-forward"></i></span></p>
-					<h1 class="mb-3 bread">Choose Your Car</h1>
+					<h1 class="mb-3 bread">Pilih Mobil</h1>
 				</div>
 			</div>
 		</div>
@@ -31,11 +31,11 @@
 						<div class="text">
 							<h2 class="mb-0"><a href="car-single.html">{{ $data->merk }}</a></h2>
 							<div class="d-flex mb-3">
-								<p class="price ml-auto">{{ $data->harga }} <span>/day</span></p>
+								<p class="price ml-auto">Rp.{{ number_format($data->harga) }}<span>/Hari</span></p>
 							</div>
 							<p class="d-flex mb-0 d-block">
-								<a href="{{route('checkout.show', ['mobil' => $data->slug])}}" class="btn btn-primary py-2 mr-1">Book now</a> 
-								<a href="{{route('front.details', ['mobil' => $data->slug])}}" class="btn btn-secondary py-2 ml-1">Details</a>
+								<a href="{{route('checkout.show', ['mobil' => $data->slug])}}" class="btn btn-primary py-2 mr-1">Pesan</a> 
+								<a href="{{route('front.details', ['mobil' => $data->slug])}}" class="btn btn-secondary py-2 ml-1">Detail</a>
 								</p>
 						</div>
 					</div>
@@ -44,18 +44,34 @@
 				@endforeach
 		
 			</div>
+			{{-- pagginate --}}
 			<div class="row mt-5">
 				<div class="col text-center">
 					<div class="block-27">
 						<ul>
-							<li><a href="#">&lt;</a></li>
-							<li class="active"><span>1</span></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&gt;</a></li>
-						</ul>
+                {{-- Tombol Sebelumnya --}}
+                @if ($mobil->onFirstPage())
+                    <li class="disabled"><span>&lt;</span></li>
+                @else
+                    <li><a href="{{ $mobil->previousPageUrl() }}">&lt;</a></li>
+                @endif
+
+                {{-- Nomor Halaman --}}
+                @for ($i = 1; $i <= $mobil->lastPage(); $i++)
+                    @if ($i == $mobil->currentPage())
+                        <li class="active"><span>{{ $i }}</span></li>
+                    @else
+                        <li><a href="{{ $mobil->url($i) }}">{{ $i }}</a></li>
+                    @endif
+                @endfor
+
+                {{-- Tombol Berikutnya --}}
+                @if ($mobil->hasMorePages())
+                    <li><a href="{{ $mobil->nextPageUrl() }}">&gt;</a></li>
+                @else
+                    <li class="disabled"><span>&gt;</span></li>
+                @endif
+            </ul>
 					</div>
 				</div>
 			</div>

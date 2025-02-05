@@ -18,7 +18,7 @@ class FrontController extends Controller
     }
 
     public function list()  {
-        $mobil = Mobil::all();
+        $mobil = Mobil::paginate(3);
         return view('front.car',compact('mobil'));
     }
 

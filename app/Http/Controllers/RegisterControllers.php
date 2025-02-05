@@ -33,21 +33,26 @@ class RegisterControllers extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'telephone' => 'required'
         ], [
             'name.required' => 'Nama Tidak Boleh Kosong!',
+            'telephone.required' => 'Telephone Tidak Boleh Kosong!',
             'email.required' => 'Email Tidak Boleh Kosong!',
             'email.email' => 'Format email tidak benar!',
             'password.required' => 'Password Tidak Boleh Kosong!'
         ]);
         
-       $user = User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'telephone' => $request->telephone,
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole('pelanggan');
+        // $user->assignRole('pelanggan');
+        $user->syncRoles('pelanggan'); 
+        // dd($user->getRoleNames());
     
         session()->flash('success', 'Berhasil Didaftarkan!');
         return redirect()->route('login'); // Redirect ke halaman login

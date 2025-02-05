@@ -17,11 +17,11 @@
           <div class="ftco-footer-widget mb-4 ml-md-5">
             <h2 class="ftco-heading-2">Information</h2>
             <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">About</a></li>
-              <li><a href="#" class="py-2 d-block">Services</a></li>
-              <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
-              <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-              <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
+              <li><a href="#" class="py-2 d-block">Home</a></li>
+              <li><a href="#" class="py-2 d-block">Layanan</a></li>
+              <li><a href="#" class="py-2 d-block">Mobil</a></li>
+              {{-- <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
+              <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li> --}}
             </ul>
           </div>
         </div>
@@ -39,7 +39,7 @@
         </div> --}}
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Have a Questions?</h2>
+            <h2 class="ftco-heading-2">Hubungi kami</h2>
             <div class="block-23 mb-3">
               <ul>
                 <li><span class="icon icon-map-marker"></span><span class="text">606 Dlanggu St. Mojokerto View, San
@@ -57,9 +57,9 @@
 
           <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright &copy;
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
-            <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
-              target="_blank">Colorlib</a>
+            <script>document.write(new Date().getFullYear());</script>
+             by <a href="https://colorlib.com"
+              target="_blank">Zanrent</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
         </div>

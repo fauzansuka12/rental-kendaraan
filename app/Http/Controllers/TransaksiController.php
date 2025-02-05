@@ -23,7 +23,6 @@ class TransaksiController extends Controller
         // Validasi input checkout
         $request->validate([
             'nama' => 'required|string',
-            'ponsel' => 'required|string',
             'alamat' => 'required|string',
             'lama' => 'required|integer|min:1',
             'tgl_pesan' => 'required|date',
@@ -37,12 +36,11 @@ class TransaksiController extends Controller
             'user_id' => Auth::id(),
             'mobil_id' => $mobil->id,
             'nama' => $request->nama,
-            'ponsel' => $request->ponsel,
             'alamat' => $request->alamat,
             'lama' => $request->lama,
             'tgl_pesan' => $request->tgl_pesan,
             'total' => $totalHarga,
-            'status' => 'WAIT',
+            'status' => 'PROSES',
         ]);
 
     return redirect()->route('front.profile', ['mobil' => $mobil->slug])->with('success', 'Pesanan Anda berhasil diproses!');

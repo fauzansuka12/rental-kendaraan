@@ -9,7 +9,7 @@
       <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
         <div class="col-lg-8 ftco-animate">
           <div class="text w-100 text-center mb-md-5 pb-md-5">
-            <h1 class="mb-4">Fast &amp; Cara Cepat & Mudah Menyewa Mobil</h1>
+            <h1 class="mb-4"> Cara Cepat & Mudah Menyewa Mobil</h1>
             <p style="font-size: 18px;"></p>
             <a href="{{ route('login') }}"
               class="icon-wrap  d-flex align-items-center mt-4 justify-content-center">
@@ -31,7 +31,7 @@
       <div class="row no-gutters">
         <div class="col-md-12	featured-top">
           <div class="row justify-content-center no-gutters">
-            <div class="col-md-10 d-flex align-items-center">
+            {{-- <div class="col-md-10 d-flex align-items-center">
               <div class="services-wrap rounded-right w-100">
                 <h3 class="heading-section text-center mb-4">Cara Lebih Baik untuk Menyewa Mobil Impian Anda</h3>
                 <div class="row d-flex mb-4">
@@ -67,7 +67,7 @@
                     class="btn text-center mx-auto m-auto ml-auto btn-primary py-3 px-4">Pesan Mobil Sempurna Anda</a>
                 </p>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
@@ -95,14 +95,14 @@
                 <div class="text">
                   <h2 class="mb-0"><a href="#">{{ $data->merk }}</a></h2>
                   <div class="d-flex mb-3">
-                    <p class="price ml-auto">{{ $data->harga }} <span>/day</span></p>
+                    <p class="price ml-auto">Rp. {{ number_format($data->harga) }} <span>/day</span></p>
                   </div>
-                  <p class="d-flex mb-0 d-block"><a href="{{route('checkout.show', ['mobil' => $data->slug])}}" class="btn btn-primary py-2 mr-1">Book now</a>
+                  <p class="d-flex mb-0 d-block">
+                    <a href="{{route('checkout.show', ['mobil' => $data->slug])}}" class="btn btn-primary py-2 mr-1 {{ $data->status == 'PROSES' ? 'disabled' : '' }}">Pesan</a>
                     
                      <a
                       href="{{route('front.details', ['mobil' => $data->slug])}}" class="btn btn-secondary py-2 ml-1">Detail</a>
                     </p>
-                      {{$data->slug}}
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@
     </div>
   </section>
 
-  <section class="ftco-section ftco-about">
+  {{-- <section class="ftco-section ftco-about">
     <div class="container">
       <div class="row no-gutters">
         <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
@@ -133,6 +133,6 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
 @endsection

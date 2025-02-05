@@ -26,10 +26,10 @@
                         <input type="text" name="nama" value="{{ Auth::user()->name }}" readonly class="border p-2">
                     </div>
 
-                    <!-- Ponsel User -->
+                    <!-- Telephone User -->
                     <div class="flex items-center justify-between">
-                        <p class="text-[#475466]">Ponsel</p>
-                        <input type="text" name="ponsel" required class="border p-2">
+                        <p class="text-[#475466]">telephone</p>
+                        <input type="text" name="telephone" required class="border p-2" value="{{ Auth::user()->telephone }}" readonly>
                     </div>
 
                     <!-- Alamat User -->

@@ -13,6 +13,12 @@
         </div>
 
         <div class="mb-3">
+            <label for="telephone" class="form-label">telephone</label>
+            <input type="text" id="telephone" class="form-control" wire:model="telephone">
+            @error('telephone') <span class="text-danger">{{ $message }}</span> @enderror
+        </div>
+
+        <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" id="password" class="form-control" wire:model="password">
             @error('password') <span class="text-danger">{{ $message }}</span> @enderror

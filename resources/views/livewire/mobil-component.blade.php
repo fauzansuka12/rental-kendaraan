@@ -16,6 +16,9 @@
                         <th scope="col">No Polisi</th>
                         <th scope="col">Merk</th>
                         <th scope="col">Jenis</th>
+                        <th scope="col">Mesin</th>
+                        <th scope="col">Kursi</th>
+                        <th scope="col">BBM</th>
                         <th scope="col">Harga</th>
                         <th>Foto</th>
                    <th> Proses</th>
@@ -27,6 +30,9 @@
                         <td>{{$data->nopolisi}}</td>
                         <td>{{$data->merk}}</td>
                         <td>{{$data->jenis}}</td>
+                        <td>{{$data->mesin}}</td>
+                        <td>{{$data->kursi}}</td>
+                        <td>{{$data->bbm}}</td>
                         <td>{{$data->harga}}</td>
                         <td>
                             <img src="{{ asset('storage/uploads/mobil/' . $data->foto) }}" style="width: 150px;" alt="{{ $data->foto }}">

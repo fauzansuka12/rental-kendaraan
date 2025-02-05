@@ -23,11 +23,12 @@
         <div class="row d-flex mb-5 contact-info">
             <div class="col-md-12">
                 <div class="row mb-5">
-                    <div class="col-md-6 mb-3">
-                        <div class="border w-100 p-4 rounded mb-2 d-flex">
-                            <div class="icon mr-3">
-                                <span class="icon-map-o"></span>
-                            </div>
+                    <div class="col-md-4">
+					<div class="car-wrap rounded ftco-animate">
+						<div class="img rounded d-flex align-items-end"
+							style="background-image: url({{ asset('storage/uploads/mobil/' . $transaksi->mobil->foto) }});">
+						</div>
+						<div class="text">
                             @if(isset($transaksi))
                             <p>
                                 <span>Mobil:</span> {{ $transaksi->mobil->merk ?? 'Tidak diketahui' }} <br>
@@ -38,6 +39,9 @@
                             @else
                             <p>Tidak ada transaksi ditemukan.</p>
                             @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>    
                 </div>

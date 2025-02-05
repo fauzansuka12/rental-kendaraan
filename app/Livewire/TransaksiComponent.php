@@ -64,7 +64,7 @@ class TransaksiComponent extends Component
                 'alamat' => $this->alamat,
                 'tgl_pesan' => $this->tanggal,
                 'total' => $this->total,
-                'status' => 'WAIT',
+                'status' => 'PROSES',
             ]); 
             session()->flash('success','Transaksi Berhasil Disimpan');
         }

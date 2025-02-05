@@ -18,7 +18,7 @@ class MobilComponent extends Component
 
     protected $paginationTheme = "bootstrap";
     public $addPage, $editPage = false;
-    public $nopolisi, $merk, $jenis, $kapasitas, $harga, $foto, $id;
+    public $nopolisi, $merk, $jenis, $kursi , $mesin, $bbm, $harga, $foto, $id;
 
     public function render()
     {
@@ -43,14 +43,20 @@ class MobilComponent extends Component
         $this->validate([
             'nopolisi' => 'required',
             'merk' => 'required',
-            'jenis' => 'required',
             'harga' => 'required',
+            'kursi' => 'required',
+            'jenis' => 'required',
+            'mesin' => 'required',
+            'bbm' => 'required',
             'foto' => 'required|image'
         ], [
             'nopolisi.required' => 'Nopolisi Tidak Boleh Kosong',
             'merk.required' => 'Merk Tidak Boleh Kosong',
-            'jenis.required' => 'Jenis Tidak Boleh Kosong',
             'harga.required' => 'Harga Tidak Boleh Kosong',
+            'kursi.required' => 'Kursi Tidak Boleh Kosong',
+            'jenis.required' => 'Jenis Tidak Boleh Kosong',
+            'mesin.required' => 'Mesin Tidak Boleh Kosong',
+            'bbm.required' => 'Bahan Bakar Mobil Tidak Boleh Kosong',
             'foto.required' => 'Foto Tidak Boleh Kosong',
             'foto.image' => 'Foto Dalam Format Image',
         ]);
@@ -62,14 +68,17 @@ class MobilComponent extends Component
             'user_id' => Auth::user()->id,
             'nopolisi' => $this->nopolisi,
             'merk' => $this->merk,
-            'jenis' => $this->jenis,
             'harga' => $this->harga,
+            'jenis' => $this->jenis,
+            'mesin' => $this->mesin,
+            'bbm' => $this->bbm,
+            'kursi' => $this->kursi,
             'foto'=>$filename,
             'slug'=>Str::slug($this->merk)
         ]);
 
         session()->flash('succes', 'Berhasil Simpan Data');
-        $this->reset(['nopolisi', 'merk', 'jenis', 'kapasitas', 'harga', 'foto']);
+        $this->reset(['nopolisi', 'merk', 'jenis', 'kursi', 'mesin','bbm', 'harga', 'foto']);
     }
     //edit
     public function update()
@@ -81,7 +90,10 @@ class MobilComponent extends Component
             'user_id' => Auth::user()->id,
             'nopolisi' => $this->nopolisi,
             'merk' => $this->merk,
+            'kursi' => $this->kursi,
             'jenis' => $this->jenis,
+            'mesin' => $this->mesin,
+            'bbm' => $this->bbm,
             'harga' => $this->harga,
             'foto' => $mobil->foto, // Tetap gunakan foto lama
         ]);
@@ -98,7 +110,10 @@ class MobilComponent extends Component
             'user_id' => Auth::user()->id,
             'nopolisi' => $this->nopolisi,
             'merk' => $this->merk,
+            'kursi' => $this->kursi,
             'jenis' => $this->jenis,
+            'mesin' => $this->mesin,
+            'bbm' => $this->bbm,
             'harga' => $this->harga,
             'foto' => $fileName,
         ]);
@@ -115,7 +130,10 @@ class MobilComponent extends Component
     $mobil=Mobil::find($id);
     $this->nopolisi=$mobil->nopolisi;
     $this->merk=$mobil->merk;
+    $this->kursi=$mobil->kursi;
     $this->jenis=$mobil->jenis;
+    $this->mesin=$mobil->mesin;
+    $this->bbm=$mobil->bbm;
     $this->harga = $mobil->harga;
 }
 

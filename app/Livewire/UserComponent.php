@@ -15,13 +15,13 @@ class UserComponent extends Component
 
     protected $paginationTheme = "bootstrap";
     public $addPage, $editPage = false;
-    public $name, $email, $password, $role,$id;
+    public $name, $email, $password, $telephone,$id;
 
     public function render()
     {
-        $data['user'] = User::paginate(2
-    );
-        return view('livewire.user-component', $data);
+        $user = User::all();
+        // dd($user);
+        return view('livewire.user-component', compact('user'));
     }
 
     public function create()
@@ -39,7 +39,7 @@ public function edit($id)
         $this->editId = $cari->id;
         $this->name = $cari->name;
         $this->email = $cari->email;
-        $this->role = $cari->role;
+        $this->telephone = $cari->telephone;
         $this->editPage = true;
     } else {
         session()->flash('error', 'User tidak ditemukan.');
@@ -52,12 +52,12 @@ public function update()
     $this->validate([
         'name' => 'required',
         'email' => 'required|email',
-        'role' => 'required',
+        'telephone' => 'required',
     ], [
         'name.required' => 'Nama tidak boleh kosong.',
         'email.required' => 'Email tidak boleh kosong.',
         'email.email' => 'Format email salah.',
-        'role.required' => 'Role tidak boleh kosong.',
+        'telephone.required' => 'telephone tidak boleh kosong.',
     ]);
 
     $user = User::find($this->editId);
@@ -68,11 +68,11 @@ public function update()
         if ($this->password) {
             $user->password = Hash::make($this->password); // Update password jika diisi
         }
-        $user->role = $this->role;
+        $user->telephone = $this->telephone;
         $user->save();
 
         session()->flash('success', 'Data berhasil diperbarui.');
-        $this->reset(['name', 'email', 'password', 'role', 'editPage', 'editId']);
+        $this->reset(['name', 'email', 'password', 'telephone', 'editPage', 'editId']);
     } else {
         session()->flash('error', 'User tidak ditemukan.');
     }
@@ -85,21 +85,25 @@ public function update()
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'role' => 'required',
+            'telephone' => 'required',
         ], [
             'name.required' => 'Name Tidak Boleh Kosong',
             'email.required' => 'Email Tidak Boleh Kosong',
             'email.email' => 'Format email salah',
             'password.required' => 'Password Tidak Boleh Kosong',
-            'role.required' => 'Role Tidak Boleh Kosong',
+            'telephone.required' => 'Telephone Tidak Boleh Kosong',
         ]);
 
-        User::create([
+        $user =User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
-            'role' => $this->role,
+            'telephone' => $this->telephone,
         ]);
+        $user->assignRole('pelanggan');
+        // dd($user->getNameRoles);
+        
+
 
         session()->flash('success', 'Berhasil simpan data');
         $this->reset();

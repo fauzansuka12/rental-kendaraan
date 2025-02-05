@@ -25,7 +25,7 @@ Route::get('/list-cars', [FrontController::class, 'list'])->name('front.list');
 Route::middleware('auth')->group(function ()  {
     
     
-    Route::get('/checkout/{mobil:slug}',[TransaksiController::class,'show'])->name('checkout.show');
+    Route::get('/checkout/{mobil:slug}',[TransaksiController::class,'show'])->name('checkout.show')->middleware('role:pelanggan');
     
     Route::post('/checkout/{mobil}', [TransaksiController::class, 'process'])->name('checkout.process');
 
@@ -58,6 +58,6 @@ Route::middleware('auth')->group(function ()  {
 use App\Http\Controllers\LaporanController;
 use App\Livewire\LaporanComponent;
 
-Route::middleware(['auth', 'pemilik'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('laporancomponent', [LaporanComponent::class, 'laporancomponent'])->name('laporan-component');
 });
