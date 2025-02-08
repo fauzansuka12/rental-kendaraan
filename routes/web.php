@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterControllers;
 use App\Http\Controllers\TransaksiController;
+use App\Models\Mobil;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin',[HomeController::class,'index'])->name('home')->middleware('role:admin');
@@ -19,17 +20,21 @@ Route::get('/',[FrontController::class,'index'])->name('front.index');
 
 Route::get('/details/{mobil:slug}', [FrontController::class, 'details'])->name('front.details');
 
-Route::get('/list-cars', [FrontController::class, 'list'])->name('front.list');
 
 
 Route::middleware('auth')->group(function ()  {
     
     
-    Route::get('/checkout/{mobil:slug}',[TransaksiController::class,'show'])->name('checkout.show')->middleware('role:pelanggan');
+    Route::get('/checkout/{mobil:slug}',[FrontController::class,'checkout'])->name('checkout')->middleware('role:pelanggan');
+
+    Route::post('/checkout/{mobil}',[FrontController::class,'storeCheckout'])->name('storeCheckout')->middleware('role:pelanggan');
     
-    Route::post('/checkout/{mobil}', [TransaksiController::class, 'process'])->name('checkout.process');
+
+    Route::patch('/transaksi/{id}/status', [TransaksiController::class, 'updateStatus'])->name('transaksi.updateStatus');
+
 
     Route::get('/profile',[FrontController::class,'profile'])->name('front.profile');
+    Route::get('/profile/proses',[FrontController::class,'proses'])->name('front.proses');
 
     Route::get('users',function(){
     return view('users.index');

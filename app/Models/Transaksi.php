@@ -23,7 +23,7 @@ public function user():BelongsTo
 }
 public function mobil():BelongsTo
 {
-    return $this->belongsTo(Mobil::class);
+    return $this->belongsTo(Mobil::class,'mobil_id');
     
 }
 }

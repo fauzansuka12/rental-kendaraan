@@ -130,8 +130,12 @@
 									</div>
 								</div>
 								<p class="text-center mt-5">
-									<a href="{{ route('checkout.process', ['mobil' => $mobil->slug]) }}"
+								@if ($mobil->status === 'PROSES')
+										<button class="btn btn-secondary py-2 mr-1" disabled>On Order</button>
+								@else
+									<a href="{{ route('checkout', ['mobil' => $mobil->slug]) }}"
 										class="btn text-center mx-auto m-auto ml-auto btn-primary py-3 px-4">Pesan Sekarang</a>
+								@endif
 								</p>
 							</div>
 						</div>
@@ -162,7 +166,7 @@
 								<p class="price ml-auto">Rp. {{number_format($mobil->harga) }} <span>/day</span></p>
 							</div>
 							<p class="d-flex mb-0 d-block">
-								<a href="{{ route('checkout.process',['mobil' => $mobil->slug]) }}" class="btn btn-primary py-2 mr-1">Pesan</a>
+								<a href="{{ route('checkout',['mobil' => $mobil->slug]) }}" class="btn btn-primary py-2 mr-1">Pesan</a>
 								 <a
 									href="{{ route('front.details',$mobil->slug)}}" class="btn btn-secondary py-2 ml-1">Detail</a>
 							</p>

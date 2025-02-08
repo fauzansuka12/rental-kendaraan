@@ -21,33 +21,42 @@
 <section class="ftco-section contact-section">
     <div class="container">
         <div class="row d-flex mb-5 contact-info">
+            
+            @if($riwayatTransaksi->filter(fn($item) => $item->status === 'PROSES')->count() > 0)
+            @include('front.proses')
+            @endif
             <div class="col-md-12">
-                <div class="row mb-5">
-                    <div class="col-md-4">
-					<div class="car-wrap rounded ftco-animate">
-						<div class="img rounded d-flex align-items-end"
-							style="background-image: url({{ asset('storage/uploads/mobil/' . $transaksi->mobil->foto) }});">
-						</div>
-						<div class="text">
-                            @if(isset($transaksi))
-                            <p>
-                                <span>Mobil:</span> {{ $transaksi->mobil->merk ?? 'Tidak diketahui' }} <br>
-                                <span>Status:</span> {{ ucfirst($transaksi->status) }} <br>
-                                <span>Tgl Pesan:</span> {{ \Carbon\Carbon::parse($transaksi->tgl_pesan)->format('d-M-Y') }} <br>
-                                <span>Sisa Waktu:</span> {{ $sisaWaktu }} <br>
-                            </p>
-                            @else
-                            <p>Tidak ada transaksi ditemukan.</p>
-                            @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                </div>
+                 <!-- Riwayat transaksiAktif -->
+                <h4>Riwayat transaksiAktif</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Mobil</th>
+                            <th>Tanggal Pesan</th>
+                            <th>Tanggal Selesai</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($riwayatTransaksi as $dt )
+
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $dt->mobil->nopolisi }}</td>
+                            <td>{{ $dt->tgl_pesan }}</td>
+                            <td>{{ $dt->tgl_selesai }}</td>
+                            <td>{{ $dt->status }}</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5" class="text-center">Belum ada riwayat transaksiAktif.</td>
+                        </tr>    
+                        
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </div>
-</section>
+    </section>
 
 @endsection

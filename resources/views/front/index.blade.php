@@ -2,7 +2,7 @@
 @section('title','Rental Mobil')
     
 @section('content')
-    <div class="hero-wrap ftco-degree-bg" style="background-image: url('{{asset('front/images/bg_1.jpg')}}');"
+  <div class="hero-wrap ftco-degree-bg" style="background-image: url('{{asset('front/images/bg_1.jpg')}}');"
     data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -73,49 +73,48 @@
       </div>
   </section>
 
-
   <section class="ftco-section ftco-no-pt bg-light">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-12 heading-section text-center ftco-animate mb-5">
           <span class="subheading"2>Apa yang kami tawarkan</span>
-          <h2 class="mb-2">Kendaraan Unggulan</h2>
+          <h2 class="mb-2">Kendaraan Tersedia</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="carousel-car owl-carousel">
 
-        @foreach ($mobil as $data)
-              
-            <div class="item">
-              <div class="car-wrap rounded ftco-animate">
-                <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('storage/uploads/mobil/' . $data->foto) }}">
-                </div>
-                <div class="text">
-                  <h2 class="mb-0"><a href="#">{{ $data->merk }}</a></h2>
-                  <div class="d-flex mb-3">
-                    <p class="price ml-auto">Rp. {{ number_format($data->harga) }} <span>/day</span></p>
+              @foreach ($mobil as $data)                          
+                  <div class="item">
+                    <div class="car-wrap rounded ftco-animate">
+                      <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('storage/uploads/mobil/' . $data->foto) }}">
+                      </div>
+                      <div class="text">
+                        <h2 class="mb-0"><a href="#">{{ $data->merk }}</a></h2>
+                        <div class="d-flex mb-3">
+                          <p class="price ml-auto">Rp. {{ number_format($data->harga) }} <span>/day</span></p>
+                        </div>
+                        <p class="d-flex mb-0 d-block">
+                          @if ($data->status === 'PROSES')
+                              <button class="btn btn-secondary py-2 mr-1" disabled>Sedang dipesan</button>
+                          @else
+                              <a href="{{ route('checkout', ['mobil' => $data->slug]) }}" class="btn btn-primary py-2 mr-1">Pesan</a> 
+                          @endif
+                            <a href="{{ route('front.details', ['mobil' => $data->slug]) }}" class="btn btn-secondary py-2 ml-1">Detail</a>
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <p class="d-flex mb-0 d-block">
-                    <a href="{{route('checkout.show', ['mobil' => $data->slug])}}" class="btn btn-primary py-2 mr-1 {{ $data->status == 'PROSES' ? 'disabled' : '' }}">Pesan</a>
-                    
-                     <a
-                      href="{{route('front.details', ['mobil' => $data->slug])}}" class="btn btn-secondary py-2 ml-1">Detail</a>
-                    </p>
-                </div>
-              </div>
-            </div>
-            @endforeach
-         
-          </div>
+              @endforeach
 
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  {{-- <section class="ftco-section ftco-about">
+   <section class="ftco-section ftco-about mb-5">
     <div class="container">
       <div class="row no-gutters">
         <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
@@ -123,16 +122,81 @@
         </div>
         <div class="col-md-6 wrap-about ftco-animate">
           <div class="heading-section heading-section-white pl-md-5">
-            <span class="subheading">HIIIIIII</span>
-            <h2 class="mb-4">Welcome to RentalMobil</h2>
-
-            <p></p>
-            <p></p>
+            {{-- <span class="subheading">HIIIIIII</span> --}}
+            <h2 class="mb-4">Welcome to ZanRent</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe libero, est ducimus eum ex modi facere commodi aut aliquam aspernatur recusandae laborum magni harum suscipit? Eligendi officia inventore ut molestias!</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos consectetur perferendis ad beatae aliquam, necessitatibus illum distinctio odio nobis facilis natus! Nobis id harum accusamus commodi dolores temporibus, autem in?</p>
             <p><a href="#" class="btn btn-primary py-3 px-4">Cari Tentang Kendaraan</a></p>
           </div>
         </div>
       </div>
     </div>
-  </section> --}}
+  </section>
+  
+<section class="ftco-section ftco-no-pt bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          {{-- <span class="subheading"2>Apa yang kami tawarkan</span> --}}
+          <h2 class="mb-2">Mobil</h2>
+        </div>
+      @foreach ($mobil_list as $data)                          
+      <div class="col-md-4">
+					<div class="car-wrap rounded ftco-animate">
+						<div class="img rounded d-flex align-items-end"
+							style="background-image: url({{ asset('storage/uploads/mobil/' . $data->foto) }});">
+						</div>
+						<div class="text">
+							<h2 class="mb-0"><a href="car-single.html">{{ $data->merk }}</a></h2>
+							<div class="d-flex mb-3">
+								<p class="price ml-auto">Rp.{{ number_format($data->harga) }}<span>/Hari</span></p>
+							</div>
+								<p class="d-flex mb-0 d-block">
+								@if ($data->status === 'PROSES')
+										<button class="btn btn-secondary py-2 mr-1" disabled>On Order</button>
+								@else
+										<a href="{{ route('checkout', ['mobil' => $data->slug]) }}" class="btn btn-primary py-2 mr-1">Booking</a> 
+								@endif
+								<a href="{{ route('front.details', ['mobil' => $data->slug]) }}" class="btn btn-secondary py-2 mr-1">Detail</a>
+							</p>
+						</div>
+					</div>
+				</div>
+        @endforeach
+      </div>
+      {{-- pagginate --}}
+      <div class="row mt-5">
+        <div class="col text-center">
+          <div class="block-27">
+            <ul>
+                {{-- Tombol Sebelumnya --}}
+                @if ($mobil->onFirstPage())
+                    <li class="disabled"><span>&lt;</span></li>
+                @else
+                    <li><a href="{{ $mobil->previousPageUrl() }}">&lt;</a></li>
+                @endif
+
+                {{-- Nomor Halaman --}}
+                @for ($i = 1; $i <= $mobil->lastPage(); $i++)
+                    @if ($i == $mobil->currentPage())
+                        <li class="active"><span>{{ $i }}</span></li>
+                    @else
+                        <li><a href="{{ $mobil->url($i) }}">{{ $i }}</a></li>
+                    @endif
+                @endfor
+
+                {{-- Tombol Berikutnya --}}
+                @if ($mobil->hasMorePages())
+                    <li><a href="{{ $mobil->nextPageUrl() }}">&gt;</a></li>
+                @else
+                    <li class="disabled"><span>&gt;</span></li>
+                @endif
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 @endsection

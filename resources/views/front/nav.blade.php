@@ -199,11 +199,52 @@
   visibility: visible;
   opacity: 1;
 }
+/* button guest */
+.Btn-guest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgb(0, 209, 139);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.Btn-guest:hover {
+    transform: translateY(-3px);
+    background: rgb(0, 209, 139);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.Btn-guest:active {
+    transform: translateY(1px);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sign svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.text a {
+    text-decoration: none;
+    color: white;
+}
+
 
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="">Zan<span>Rent</span></a>
+      <a class="navbar-brand" href="/">Zan<span>Rent</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
         aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
@@ -211,9 +252,15 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="/list-cars" class="nav-link">Cars</a></li>
+          {{-- <li class="nav-item active"><a href="/" class="nav-link">Home</a></li> --}}
+          {{-- <li class="nav-item"><a href="/list-cars" class="nav-link">Cars</a></li> --}}
         </ul>
+        @guest
+            <button class="Btn-guest"> 
+            <div class="sign"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+            <div class="text"><a style="color: white;" href="{{ route('login') }}">Login</a></div>
+          </button>
+        @endguest
         <!-- From Uiverse.io by devkatyall --> 
           @auth
 
@@ -252,7 +299,7 @@
                         d="M19 4v6.406l-3.753 3.741-6.463-6.462 3.7-3.685h6.516zm2-2h-12.388l1.497 1.5-4.171 4.167 9.291 9.291 4.161-4.193 1.61 1.623v-12.388zm-5 4c.552 0 1 .449 1 1s-.448 1-1 1-1-.449-1-1 .448-1 1-1zm0-1c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm6.708.292l-.708.708v3.097l2-2.065-1.292-1.74zm-12.675 9.294l-1.414 1.414h-2.619v2h-2v2h-2v-2.17l5.636-5.626-1.417-1.407-6.219 6.203v5h6v-2h2v-2h2l1.729-1.729-1.696-1.685z"
                       ></path>
                     </svg>
-                    <span><a href="{{ route('front.profile') }}">Profile</a></span>
+                    <span><a style="color: black;" href="{{ route('front.profile') }}">Profile</a></span>
                   </button>
                 </li>
 {{-- profile --}}
@@ -272,7 +319,7 @@
                         d="M2.598 9h-1.055c1.482-4.638 5.83-8 10.957-8 6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5c-5.127 0-9.475-3.362-10.957-8h1.055c1.443 4.076 5.334 7 9.902 7 5.795 0 10.5-4.705 10.5-10.5s-4.705-10.5-10.5-10.5c-4.568 0-8.459 2.923-9.902 7zm12.228 3l-4.604-3.747.666-.753 6.112 5-6.101 5-.679-.737 4.608-3.763h-14.828v-1h14.826z"
                       ></path>
                     </svg>
-                    <span><a href="{{ route('login.keluar') }}">Log out</a></span>
+                    <span><a style="color: black;" href="{{ route('login.keluar') }}">Log out</a></span>
                   </button>
                 </li>
 

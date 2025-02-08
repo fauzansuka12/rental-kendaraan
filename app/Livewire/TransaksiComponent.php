@@ -77,4 +77,5 @@ class TransaksiComponent extends Component
 
         $this->lihatPage=true;
         }
+        
 }

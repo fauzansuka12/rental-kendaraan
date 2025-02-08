@@ -13,13 +13,13 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">No Polisi</th>
+                        <th scope="col">Nama Pemesan</th>
                         <th scope="col">Merk</th>
-                        <th scope="col">Jenis</th>
-                        <th scope="col">Harga</th>
+                        {{-- <th scope="col">Jenis</th> --}}
                         <th scope="col">Ponsel</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Tanggal Pesan</th>
+                        <th scope="col">Harga</th>
                         <th scope="col">Total</th>
                         <th scope="col">Lama</th>
                         <th scope="col">Status</th>
@@ -29,22 +29,25 @@
                     @forelse ($transaksi as $data)
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$data->mobil->nopolisi}}</td>
+                        <td>{{$data->user->name}}</td>
                         <td>{{$data->mobil->merk}}</td>
-                        <td>{{$data->nama}}</td>
-                        <td>{{$data->ponsel}}</td>
+                        <td>{{$data->user->telephone}}</td>
                         <td>{{$data->alamat}}</td>
                         <td>{{$data->tgl_pesan}}</td>
+                        <td>{{$data->mobil->harga}}</td>
                         <td>{{$data->total}}</td>
                         <td>{{$data->lama}}</td>
                         <td>{{$data->status}}</td>
                         <td>
-                            @if ($data->status=="WAIT")
-                            <button class="btn btn-sm btn-success"wire:click="proses({{$data->id}})">PROSES</button>
-                            @endif
-                            @if ($data->status == "PROSES")
-                            <button class="btn btn-sm btn-success"wire:click="selesai({{$data->id}})">SELESAI</button>
-                            @endif
+                           <form action="{{ route('transaksi.updateStatus', $data->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <select name="status" onchange="this.form.submit()" class="border p-2 rounded">
+                                    <option value="PROSES" {{ $data->status == 'PROSES' ? 'selected' : '' }}>PROSES</option>
+                                    <option value="SELESAI" {{ $data->status == 'SELESAI' ? 'selected' : '' }}>SELESAI</option>
+                                    <option value="TOLAK" {{ $data->status == 'TOLAK' ? 'selected' : '' }}>TOLAK</option>
+                                </select>
+                            </form>
                         </td>
                     </tr>
                     @empty
@@ -54,13 +57,13 @@
                     @endforelse
                 </tbody>
             </table>
-    <div class="col-sm-12 col-xl-12">
-        <div class="container-fluid pt-4 px-4 flex">
-            {{$transaksi->links()}}
-</div>
-    </div>
-</div>
-</div>
+                <div class="col-sm-12 col-xl-12">
+                    <div class="container-fluid pt-4 px-4 flex">
+                        {{$transaksi->links()}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

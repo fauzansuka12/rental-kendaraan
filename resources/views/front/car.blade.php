@@ -1,23 +1,22 @@
 @extends('front.main')
-@section('title','Detail Mobil')
 @section('content')
-	<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{asset('front/images/bg_3.jpg')}}');"
-		data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-				<div class="col-md-9 ftco-animate pb-5">
-					<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
-									class="ion-ios-arrow-forward"></i></a></span> <span>Cars <i
-								class="ion-ios-arrow-forward"></i></span></p>
-					<h1 class="mb-3 bread">Pilih Mobil</h1>
-				</div>
-			</div>
-		</div>
-	</section>
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="{{ route('home') }}">Home <i class="ion-ios-arrow-forward"></i></a></span> 
+                    <span>Detail <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+                <h1 class="mb-3 bread">{{ Auth::user()->name }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
 
-
-	<section class="ftco-section bg-light">
+<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row">
 
@@ -34,9 +33,13 @@
 								<p class="price ml-auto">Rp.{{ number_format($data->harga) }}<span>/Hari</span></p>
 							</div>
 							<p class="d-flex mb-0 d-block">
-								<a href="{{route('checkout.show', ['mobil' => $data->slug])}}" class="btn btn-primary py-2 mr-1">Pesan</a> 
-								<a href="{{route('front.details', ['mobil' => $data->slug])}}" class="btn btn-secondary py-2 ml-1">Detail</a>
-								</p>
+								@if ($data->status === 'PROSES')
+										<button class="btn btn-secondary py-2 mr-1" disabled>On Order</button>
+								@else
+										<a href="{{ route('checkout', ['mobil' => $data->slug]) }}" class="btn btn-primary py-2 mr-1">Booking</a> 
+								@endif
+								<a href="{{ route('front.details', ['mobil' => $data->slug]) }}" class="btn btn-secondary py-2 mr-1">Detail</a>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -45,18 +48,18 @@
 		
 			</div>
 			{{-- pagginate --}}
-			<div class="row mt-5">
+			{{-- <div class="row mt-5">
 				<div class="col text-center">
 					<div class="block-27">
 						<ul>
-                {{-- Tombol Sebelumnya --}}
+                Tombol Sebelumnya
                 @if ($mobil->onFirstPage())
                     <li class="disabled"><span>&lt;</span></li>
                 @else
                     <li><a href="{{ $mobil->previousPageUrl() }}">&lt;</a></li>
                 @endif
 
-                {{-- Nomor Halaman --}}
+                Nomor Halaman
                 @for ($i = 1; $i <= $mobil->lastPage(); $i++)
                     @if ($i == $mobil->currentPage())
                         <li class="active"><span>{{ $i }}</span></li>
@@ -65,7 +68,7 @@
                     @endif
                 @endfor
 
-                {{-- Tombol Berikutnya --}}
+                Tombol Berikutnya
                 @if ($mobil->hasMorePages())
                     <li><a href="{{ $mobil->nextPageUrl() }}">&gt;</a></li>
                 @else
@@ -74,8 +77,7 @@
             </ul>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 		</div>
-	</section>
-
+</section>
 @endsection

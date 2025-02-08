@@ -90,7 +90,7 @@
                 <td>{{$data->nama}}</td>
                 <td>{{$data->alamat}}</td>
                 <td>{{$data->tgl_pesan}}</td>
-                <td>{{$data->lama}}</td>
+                <td>{{$data->lama}}/Hari</td>
                 <td>{{$data->total}}</td>
             </tr>
             @empty 
@@ -99,6 +99,11 @@
             </tr>
             @endforelse
         </tbody>
+        {{-- <h1>Total : {{ $data->total*$data->id }}</h1> --}}
     </table>
+     <!-- Menampilkan Total Penghasilan -->
+    <div class="total-box">
+        Total Penghasilan: Rp {{ number_format($transaksi->sum('total'), 0, ',', '.') }}
+    </div>
 </body>
 </html>

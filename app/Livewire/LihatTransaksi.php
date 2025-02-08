@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Mobil;
 use App\Models\Transaksi;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
@@ -14,7 +15,7 @@ class LihatTransaksi extends Component
     #[On('lihat-transaksi')]
     public function render()
     {
-        $data['transaksi']=Transaksi::paginate(10);
+        $data['transaksi']=Transaksi::paginate(15);
         return view('livewire.lihat-transaksi',$data);
     }
     public function proses($id){
@@ -25,9 +26,9 @@ class LihatTransaksi extends Component
         session()->flash('success','Berhasil Proses Data');
     }
     public function selesai($id){
-        $transaksi=Transaksi::find($id);
+        $transaksi=Mobil::find($id);
         $transaksi->update([
-            'status'=>'SELESAI'
+            'status'=>'TERSEDIA'
         ]);
         session()->flash('success','Berhasil Proses Data');
     }

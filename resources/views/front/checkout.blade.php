@@ -12,12 +12,13 @@
     <div id="checkout-section" class="max-w-[1200px] mx-auto w-full min-h-[calc(100vh-40px)] flex flex-col gap-[30px] bg-[url('assets/background/Hero-Banner.png')] bg-center bg-no-repeat bg-cover rounded-t-[32px] overflow-hidden relative pb-6">
        
         <div class="flex gap-10 px-[100px] relative z-10">
-           <form action="{{ route('checkout.process', $mobil->slug) }}" method="POST" enctype="multipart/form-data" class="flex flex-col w-full gap-5 p-5 bg-white rounded-2xl">
+           <form action="{{ route('storeCheckout', $mobil->id) }}" method="POST" enctype="multipart/form-data" class="flex flex-col w-full gap-5 p-5 bg-white rounded-2xl">
                 @csrf
                 <p class="text-lg font-bold">Pemesanan</p>
 
                 <div class="flex flex-col gap-5">
                     <!-- Simpan harga mobil sebagai hidden input -->
+                    <input type="hidden" name="mobil_id" value="{{ $mobil->id }}">
                     <input type="hidden" id="hargaMobil" value="{{ $mobil->harga }}">
 
                     <!-- Nama User -->

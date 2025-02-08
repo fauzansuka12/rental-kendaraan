@@ -8,16 +8,25 @@ use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
-    // Menampilkan halaman checkout berdasarkan slug
-    public function show(Mobil $mobil)
-    {
-        // $mobil = Mobil::where('slug', $slug)->firstOrFail();
-        return view('front.checkout', compact('mobil'));
+   
+    public function updateStatus(Request $request, $id)
+{
+    $transaksi = Transaksi::findOrFail($id);
+
+    if ($request->status === 'SELESAI') {
+        $transaksi->mobil->update(['status' => 'TERSEDIA']);
     }
+
+    $transaksi->update(['status' => $request->status]);
+
+    return back()->with('success', 'Status transaksi berhasil diperbarui.');
+}
+
 
     // Memproses transaksi
     public function process(Request $request,Mobil $mobil)
     {
+        
         // $mobil = Mobil::where('slug', $slug)->firstOrFail();
         
         // Validasi input checkout
@@ -43,6 +52,8 @@ class TransaksiController extends Controller
             'status' => 'PROSES',
         ]);
 
-    return redirect()->route('front.profile', ['mobil' => $mobil->slug])->with('success', 'Pesanan Anda berhasil diproses!');
+    return redirect()->route('front.profile')->with('success', 'Pesanan Anda berhasil diproses!');
     }
+
+    
 }

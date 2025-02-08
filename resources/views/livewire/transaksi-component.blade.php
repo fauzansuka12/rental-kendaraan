@@ -30,14 +30,14 @@
                                   <ul class="list-group list-group-flush">
                                       <li class="list-group-item">No Polisi: {{ $data->nopolisi }}</li>
                                       <li class="list-group-item">Harga: {{ $data->harga }}</li>
-                                      <li class="list-group-item">Kapasitas: {{ $data->kapasitas }}</li>
+                                      <li class="list-group-item">Kapasitas: {{ $data->kursi }}</li>
                                   </ul>
-                                  <div class="card-body">
+                                  {{-- <div class="card-body">
                                       <button wire:click="create({{ $data->id }}, {{ $data->harga }})" 
                                               class="btn btn-sm btn-success card-link">
                                           Pilih Mobil
                                       </button>
-                                  </div>
+                                  </div> --}}
                               </div>
                           </div>
                       @endforeach

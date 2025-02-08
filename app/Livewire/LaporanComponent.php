@@ -23,9 +23,9 @@ class LaporanComponent extends Component
 if ($this->tanggal2 != "") {
     $data['transaksi'] = Transaksi::where('status','SELESAI')
     ->whereBetween('tgl_pesan',[$this->tanggal1,$this->tanggal2])
-    ->paginate(10);
+    ->paginate(15);
 }else{
-    $data['transaksi'] = Transaksi::where('status','SELESAI')->paginate(10);
+    $data['transaksi'] = Transaksi::where('status','SELESAI')->paginate(15);
 
 }
 
